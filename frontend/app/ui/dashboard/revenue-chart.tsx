@@ -7,15 +7,8 @@ import { fetchRevenue } from '@/app/lib/data';
 import useSWR from 'swr';
 import { RevenueChartSkeleton } from '@/app/ui/skeletons';
 
-// This component is representational only.
-// For data visualization UI, check out:
-// https://www.tremor.so/
-// https://www.chartjs.org/
-// https://airbnb.io/visx/
-
 const RevenueChart = () => {
-  // const revenue = await fetchRevenue(); // Fetch data inside the component
-  const { data: revenue, error: error, isLoading: isLoading, isValidating } = useSWR('/api/fetchRevenue', fetchRevenue);
+  const { data: revenue, error: error, isLoading: isLoading, isValidating } = useSWR('/api/fetchRevenue', fetchRevenue); // The data is fetched on the client side on every request
   const chartHeight = 350;
   // NOTE: Uncomment this code in Chapter 7
 

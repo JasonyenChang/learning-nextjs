@@ -12,11 +12,8 @@ import { customers } from './placeholder-data';
 
 export async function fetchRevenue() {
   try {
-    // Artificially delay a response for demo purposes.
-    // Don't do this in production :)
+    console.log('## Fetching revenue data... ##');
 
-    // console.log('Fetching revenue data...');
-    // await new Promise((resolve) => setTimeout(resolve, 3000));
     await fetch("https://jsonplaceholder.typicode.com/todos/1");
     await fetch("https://jsonplaceholder.typicode.com/todos/2");
     await fetch("https://jsonplaceholder.typicode.com/todos/3");
@@ -32,7 +29,6 @@ export async function fetchRevenue() {
       return Math.floor(Math.random() * (5000 - 1000 + 1)) + 1000;
     }
 
-    // const data = await sql<Revenue>`SELECT * FROM revenue`;
     const data = {
       rows: [
         { month: 'Jan', revenue: generateRandomNumber() },
@@ -50,8 +46,6 @@ export async function fetchRevenue() {
       ]
     }
 
-    // console.log('Data fetch completed after 3 seconds.');
-
     return data.rows;
   } catch (error) {
     console.error('Database Error:', error);
@@ -61,12 +55,18 @@ export async function fetchRevenue() {
 
 export async function fetchLatestInvoices() {
   try {
-    // const data = await sql<LatestInvoiceRaw>`
-    //   SELECT invoices.amount, customers.name, customers.image_url, customers.email, invoices.id
-    //   FROM invoices
-    //   JOIN customers ON invoices.customer_id = customers.id
-    //   ORDER BY invoices.date DESC
-    //   LIMIT 5`;
+    console.log('## Fetching invoice data... ##');
+
+    await fetch("https://jsonplaceholder.typicode.com/todos/11");
+    await fetch("https://jsonplaceholder.typicode.com/todos/12");
+    await fetch("https://jsonplaceholder.typicode.com/todos/13");
+    await fetch("https://jsonplaceholder.typicode.com/todos/14");
+    await fetch("https://jsonplaceholder.typicode.com/todos/15");
+    await fetch("https://jsonplaceholder.typicode.com/todos/16");
+    await fetch("https://jsonplaceholder.typicode.com/todos/17");
+    await fetch("https://jsonplaceholder.typicode.com/todos/18");
+    await fetch("https://jsonplaceholder.typicode.com/todos/19");
+    await fetch("https://jsonplaceholder.typicode.com/todos/20");
 
     const data = {
       rows: [

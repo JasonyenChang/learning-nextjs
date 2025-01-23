@@ -6,8 +6,8 @@ import { lusitana } from '@/app/ui/fonts';
 import { fetchLatestInvoices } from '@/app/lib/data';
 import { RevenueChartSkeleton } from '@/app/ui/skeletons';
 
-const Page = () => {
-    // const latestInvoices = await fetchLatestInvoices();
+const Page = async () => {
+    const latestInvoices = await fetchLatestInvoices(); // The data is fetched on the server side at build time
     return (
         <main>
             <h1 className={`${lusitana.className} mb-4 text-xl md:text-2xl`}>
@@ -27,7 +27,9 @@ const Page = () => {
                 <Suspense fallback={<RevenueChartSkeleton />}>
                     <RevenueChart />
                 </Suspense>
-                {/* <LatestInvoices latestInvoices={latestInvoices} /> */}
+
+                {/* latestInvoices fetched on the server side at build time */}
+                <LatestInvoices latestInvoices={latestInvoices} />
             </div>
         </main>
     );
