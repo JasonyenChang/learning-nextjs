@@ -16,23 +16,37 @@ export async function fetchRevenue() {
     // Don't do this in production :)
 
     // console.log('Fetching revenue data...');
-    await new Promise((resolve) => setTimeout(resolve, 3000));
+    // await new Promise((resolve) => setTimeout(resolve, 3000));
+    await fetch("https://jsonplaceholder.typicode.com/todos/1");
+    await fetch("https://jsonplaceholder.typicode.com/todos/2");
+    await fetch("https://jsonplaceholder.typicode.com/todos/3");
+    await fetch("https://jsonplaceholder.typicode.com/todos/4");
+    await fetch("https://jsonplaceholder.typicode.com/todos/5");
+    await fetch("https://jsonplaceholder.typicode.com/todos/6");
+    await fetch("https://jsonplaceholder.typicode.com/todos/7");
+    await fetch("https://jsonplaceholder.typicode.com/todos/8");
+    await fetch("https://jsonplaceholder.typicode.com/todos/9");
+    await fetch("https://jsonplaceholder.typicode.com/todos/10");
+
+    function generateRandomNumber() {
+      return Math.floor(Math.random() * (5000 - 1000 + 1)) + 1000;
+    }
 
     // const data = await sql<Revenue>`SELECT * FROM revenue`;
     const data = {
       rows: [
-        { month: 'Jan', revenue: 2000 },
-        { month: 'Feb', revenue: 1800 },
-        { month: 'Mar', revenue: 2200 },
-        { month: 'Apr', revenue: 2500 },
-        { month: 'May', revenue: 2300 },
-        { month: 'Jun', revenue: 3200 },
-        { month: 'Jul', revenue: 3500 },
-        { month: 'Aug', revenue: 3700 },
-        { month: 'Sep', revenue: 2500 },
-        { month: 'Oct', revenue: 2800 },
-        { month: 'Nov', revenue: 3000 },
-        { month: 'Dec', revenue: 4800 },
+        { month: 'Jan', revenue: generateRandomNumber() },
+        { month: 'Feb', revenue: generateRandomNumber() },
+        { month: 'Mar', revenue: generateRandomNumber() },
+        { month: 'Apr', revenue: generateRandomNumber() },
+        { month: 'May', revenue: generateRandomNumber() },
+        { month: 'Jun', revenue: generateRandomNumber() },
+        { month: 'Jul', revenue: generateRandomNumber() },
+        { month: 'Aug', revenue: generateRandomNumber() },
+        { month: 'Sep', revenue: generateRandomNumber() },
+        { month: 'Oct', revenue: generateRandomNumber() },
+        { month: 'Nov', revenue: generateRandomNumber() },
+        { month: 'Dec', revenue: generateRandomNumber() },
       ]
     }
 
@@ -270,5 +284,21 @@ export async function fetchFilteredCustomers(query: string) {
   } catch (err) {
     console.error('Database Error:', err);
     throw new Error('Failed to fetch customer table.');
+  }
+}
+
+export async function getSortedPostsData() {
+  const url = "https://jsonplaceholder.typicode.com/todos/1";
+  try {
+    const response = await fetch(url);
+    if (!response.ok) {
+      throw new Error(`HTTP Error: ${response.status}`);
+    }
+    const result = await response.json();
+    return { title: result.title };
+  } catch (error) {
+    console.error(`Failed to fetch data`);
+    // Return a fallback value to prevent undefined
+    return [];
   }
 }

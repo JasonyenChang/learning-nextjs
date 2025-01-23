@@ -1,8 +1,11 @@
+"use client";
 import { generateYAxis } from '@/app/lib/utils';
 import { CalendarIcon } from '@heroicons/react/24/outline';
 import { lusitana } from '@/app/ui/fonts';
 import { Revenue } from '@/app/lib/definitions';
 import { fetchRevenue } from '@/app/lib/data';
+import useSWR from 'swr';
+import { RevenueChartSkeleton } from '@/app/ui/skeletons';
 
 // This component is representational only.
 // For data visualization UI, check out:
@@ -10,15 +13,16 @@ import { fetchRevenue } from '@/app/lib/data';
 // https://www.chartjs.org/
 // https://airbnb.io/visx/
 
-export default async function RevenueChart() {
-  const revenue = await fetchRevenue(); // Fetch data inside the component
+const RevenueChart = () => {
+  // const revenue = await fetchRevenue(); // Fetch data inside the component
+  const { data: revenue, error: error, isLoading: isLoading, isValidating } = useSWR('/api/fetchRevenue', fetchRevenue);
   const chartHeight = 350;
   // NOTE: Uncomment this code in Chapter 7
 
-  const { yAxisLabels, topLabel } = generateYAxis(revenue);
+  const { yAxisLabels, topLabel } = generateYAxis(revenue || []);
 
-  if (!revenue || revenue.length === 0) {
-    return <p className="mt-4 text-gray-400">No data available.</p>;
+  if (!revenue || isValidating) {
+    return <RevenueChartSkeleton /> // <p className="mt-4 text-gray-400">No data available.</p>;
   }
 
   return (
@@ -61,3 +65,5 @@ export default async function RevenueChart() {
     </div>
   );
 }
+
+export default RevenueChart;
