@@ -12,7 +12,7 @@ import { customers } from './placeholder-data';
 
 export async function fetchRevenue() {
   try {
-    console.log('## Fetching revenue data... ##');
+    console.log('## Fetching revenue data on client... ##');
 
     await fetch("https://jsonplaceholder.typicode.com/todos/1");
     await fetch("https://jsonplaceholder.typicode.com/todos/2");
@@ -55,7 +55,7 @@ export async function fetchRevenue() {
 
 export async function fetchLatestInvoices() {
   try {
-    console.log('## Fetching invoice data... ##');
+    console.log('## Fetching invoice data on server... ##');
 
     await fetch("https://jsonplaceholder.typicode.com/todos/11");
     await fetch("https://jsonplaceholder.typicode.com/todos/12");
