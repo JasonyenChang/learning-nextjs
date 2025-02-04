@@ -7,6 +7,7 @@ import type { User } from '@/app/lib/definitions';
  
 async function getUser(email: string): Promise<User | undefined> {
   try {
+    console.log('## get user credentials ##');
     const user = [{ id: "001", name: "Jason Chang", email: "jason@engineerforce.io", password: "123456" }]
     return user[0];
   } catch (error) {
